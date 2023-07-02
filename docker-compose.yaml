@@ -1,0 +1,14 @@
+version: '3' 
+services:
+  snmp-test: # サービス名
+    container_name: snmp-test
+    build: # ビルドに使うDockerファイルのパス
+      context: .
+      dockerfile: ./build/Dockerfile
+    volumes: # マウントディレクトリ
+      - ./snmp-test:/go/src/github.com/snmptest
+    tty: true # コンテナの永続化
+    env_file: # .envファイル
+      - ./build/.go_env
+    environment:
+      - TZ=Asia/Tokyo
